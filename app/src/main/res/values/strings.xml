@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Note Me</string>
+    <string name="title_activity_detail">Detail</string>
+    <string name="welcomeScreen">Welcome to Sonal and Chuchu\'s Notepad</string>
+</resources>

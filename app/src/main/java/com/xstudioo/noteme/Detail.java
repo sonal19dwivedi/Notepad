@@ -119,7 +119,7 @@ public class Detail extends AppCompatActivity {
         final Note note = db.getNote(id);
         AlertDialog.Builder builder = new AlertDialog.Builder(Detail.this);
         builder.setTitle("Share Via");
-        builder.setItems(new String[]{"Email", "More"}, new DialogInterface.OnClickListener(){
+        builder.setItems(new String[]{"Email", "Other options"}, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which){
                 dialog.dismiss();
@@ -130,8 +130,8 @@ public class Detail extends AppCompatActivity {
                     case 1: //System share
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
-                        intent.putExtra(Intent.EXTRA_SUBJECT, "Share");
-                        intent.putExtra(Intent.EXTRA_TEXT, "I like this! Recommend!");
+                        intent.putExtra(Intent.EXTRA_SUBJECT, note.getTitle());
+                        intent.putExtra(Intent.EXTRA_TEXT, note.getContent());
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(Intent.createChooser(intent, "share"));
                         break;

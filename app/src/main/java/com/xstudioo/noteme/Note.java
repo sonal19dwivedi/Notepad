@@ -6,22 +6,29 @@ public class Note {
     private String content;
     private String date;
     private String time;
+    private String color;
 
-    Note(String title,String content,String date, String time){
+    Note(){
+
+    }
+
+    Note(String title,String content,String date, String time, String color){
         this.title = title;
         this.content = content;
         this.date = date;
         this.time = time;
+        this.color = color;
     }
 
-    Note(long id,String title,String content,String date, String time){
+    Note(long id,String title,String content,String date, String time, String color){
         this.id = id;
         this.title = title;
         this.content = content;
         this.date = date;
         this.time = time;
+        this.color = color;
     }
-    Note(){
+    Note(long l, String string, String cursorString, String time, String color){
        // empty constructor
     }
 
@@ -63,5 +70,13 @@ public class Note {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

@@ -3,5 +3,9 @@
     <color name="colorPrimary">#ffdddd</color>
     <color name="colorPrimaryDark">#f1979f</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="white">#fff</color>
+    <color name="white">#000000</color>-->
+    <color name="def">#fff</color>
+    <color name="fab1_color">#ffffcf</color>
+    <color name="fab2_color">#d9ffdf</color>
+    <color name="fab3_color">#d9ffff</color>
 </resources>

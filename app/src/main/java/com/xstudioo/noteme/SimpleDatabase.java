@@ -26,6 +26,7 @@ public class SimpleDatabase extends SQLiteOpenHelper {
     private static final String KEY_CONTENT = "content";
     private static final String KEY_DATE = "date";
     private static final String KEY_TIME = "time";
+    private static final String KEY_COLOR = "color";
 
 
 
@@ -39,7 +40,8 @@ public class SimpleDatabase extends SQLiteOpenHelper {
                  KEY_TITLE+" TEXT,"+
                  KEY_CONTENT+" TEXT,"+
                  KEY_DATE+" TEXT,"+
-                 KEY_TIME+" TEXT"
+                 KEY_TIME+" TEXT,"+
+                 KEY_COLOR+" TEXT"
                  +" )";
          db.execSQL(createDb);
     }
@@ -61,6 +63,7 @@ public class SimpleDatabase extends SQLiteOpenHelper {
         v.put(KEY_CONTENT,note.getContent());
         v.put(KEY_DATE,note.getDate());
         v.put(KEY_TIME,note.getTime());
+        v.put(KEY_COLOR, note.getColor());
 
         // inserting data into db
         long ID = db.insert(TABLE_NAME,null,v);
@@ -69,7 +72,7 @@ public class SimpleDatabase extends SQLiteOpenHelper {
 
     public Note getNote(long id){
         SQLiteDatabase db = this.getWritableDatabase();
-        String[] query = new String[] {KEY_ID,KEY_TITLE,KEY_CONTENT,KEY_DATE,KEY_TIME};
+        String[] query = new String[] {KEY_ID,KEY_TITLE,KEY_CONTENT,KEY_DATE,KEY_TIME,KEY_COLOR};
        Cursor cursor=  db.query(TABLE_NAME,query,KEY_ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
         if(cursor != null)
             cursor.moveToFirst();
@@ -79,7 +82,8 @@ public class SimpleDatabase extends SQLiteOpenHelper {
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3),
-                cursor.getString(4));
+                cursor.getString(4),
+                cursor.getString(5));
     }
 
     public List<Note> getAllNotes(){
@@ -111,6 +115,7 @@ public class SimpleDatabase extends SQLiteOpenHelper {
         c.put(KEY_CONTENT,note.getContent());
         c.put(KEY_DATE,note.getDate());
         c.put(KEY_TIME,note.getTime());
+        c.put(KEY_COLOR, note.getColor());
         return db.update(TABLE_NAME,c,KEY_ID+"=?",new String[]{String.valueOf(note.getId())});
     }
 

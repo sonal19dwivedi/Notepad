@@ -1,6 +1,7 @@
 package com.xstudioo.noteme;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 
 public class Detail extends AppCompatActivity {
     long id;
+    View view;
+    String color;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,20 @@ public class Detail extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        view = this.getWindow().getDecorView();
+        if(note.getColor().equals("#ffffcf")){
+            view.setBackgroundResource(R.color.fab1_color);
+        }else if(note.getColor().equals("#d9ffdf")){
+            view.setBackgroundResource(R.color.fab2_color);
+        }else if(note.getColor().equals("#d9ffff")){
+            view.setBackgroundResource(R.color.fab3_color);
+        }else
+            view.setBackgroundResource(R.color.def);
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

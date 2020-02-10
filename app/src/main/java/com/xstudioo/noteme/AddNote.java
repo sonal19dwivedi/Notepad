@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ public class AddNote extends AppCompatActivity {
     Calendar c;
     String todaysDate;
     String currentTime;
+    String color;
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class AddNote extends AppCompatActivity {
 
         noteDetails = findViewById(R.id.noteDetails);
         noteTitle = findViewById(R.id.noteTitle);
+        color = "#ffffff";
 
         noteTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,6 +64,21 @@ public class AddNote extends AppCompatActivity {
         currentTime = pad(c.get(Calendar.HOUR))+":"+pad(c.get(Calendar.MINUTE));
         Log.d("TIME", "Time: "+currentTime);
 
+        view = this.getWindow().getDecorView();
+
+    }
+
+    public void goFab1(View v){
+        view.setBackgroundResource(R.color.fab1_color);
+        color="#ffffcf";
+    }
+    public void goFab2(View v){
+        view.setBackgroundResource(R.color.fab2_color);
+        color="#d9ffdf";
+    }
+    public void goFab3(View v){
+        view.setBackgroundResource(R.color.fab3_color);
+        color="#d9ffff";
     }
 
     private String pad(int time) {
@@ -81,7 +100,7 @@ public class AddNote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.save){
             if(noteTitle.getText().length() != 0){
-                Note note = new Note(noteTitle.getText().toString(),noteDetails.getText().toString(),todaysDate,currentTime);
+                Note note = new Note(noteTitle.getText().toString(),noteDetails.getText().toString(),todaysDate,currentTime,color);
                 SimpleDatabase sDB = new SimpleDatabase(this);
                 long id = sDB.addNote(note);
                 Note check = sDB.getNote(id);
